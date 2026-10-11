@@ -1,0 +1,49 @@
+{
+  "scope": ["http://127.0.0.1:8765/"],
+  "defaults": {
+    "delayMs": 20,
+    "timeoutMs": 10000,
+    "settleMs": 500,
+    "maxProbes": 200,
+    "maxResponseBytes": 2000000
+  },
+  "cases": [
+    { "id": "reflected-html", "type": "query", "url": "http://127.0.0.1:8765/reflected", "param": "q" },
+    { "id": "escaped-html-control", "type": "query", "url": "http://127.0.0.1:8765/escaped", "param": "q" },
+    { "id": "attribute-breakout", "type": "query", "url": "http://127.0.0.1:8765/attribute", "param": "q" },
+    { "id": "script-string-breakout", "type": "query", "url": "http://127.0.0.1:8765/script", "param": "q" },
+    { "id": "dom-fragment", "type": "fragment", "url": "http://127.0.0.1:8765/dom" },
+    { "id": "dom-safe-control", "type": "fragment", "url": "http://127.0.0.1:8765/dom-safe" },
+    { "id": "csp-control", "type": "query", "url": "http://127.0.0.1:8765/csp", "param": "q" },
+    {
+      "id": "stored-form",
+      "type": "form",
+      "url": "http://127.0.0.1:8765/stored",
+      "param": "message",
+      "data": { "message": "baseline" },
+      "verifyUrls": ["http://127.0.0.1:8765/stored"]
+    },
+    {
+      "id": "json-response-control",
+      "type": "json",
+      "url": "http://127.0.0.1:8765/api/echo",
+      "param": "message",
+      "data": { "message": "baseline" }
+    },
+    {
+      "id": "json-to-html-candidate",
+      "type": "json",
+      "url": "http://127.0.0.1:8765/json-html",
+      "param": "message",
+      "data": { "message": "baseline" }
+    },
+    {
+      "id": "stored-browser-form",
+      "type": "browser-form",
+      "url": "http://127.0.0.1:8765/form",
+      "field": "textarea[name=message]",
+      "submit": "button[type=submit]",
+      "verifyUrls": ["http://127.0.0.1:8765/stored"]
+    }
+  ]
+}

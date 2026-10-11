@@ -1,0 +1,24 @@
+{
+  "name": "scoped-xss-suite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Scope-limited XSS probes with browser evidence and a local practice lab",
+  "type": "module",
+  "bin": {
+    "xss-suite": "./src/cli.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "test:browser": "node --test integration/*.test.js",
+    "demo": "node demo/server.js",
+    "demo:scan": "node scripts/demo-scan.js",
+    "scan": "node src/cli.js scan",
+    "setup:browser": "playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "1.64.0"
+  }
+}

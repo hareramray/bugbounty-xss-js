@@ -1,0 +1,46 @@
+{
+  "scope": ["https://your-authorized-target.example/test-area/"],
+  "defaults": {
+    "delayMs": 750,
+    "timeoutMs": 10000,
+    "settleMs": 500,
+    "maxProbes": 100,
+    "maxResponseBytes": 2000000
+  },
+  "cases": [
+    {
+      "id": "search-query",
+      "type": "query",
+      "url": "https://your-authorized-target.example/test-area/search",
+      "param": "q"
+    },
+    {
+      "id": "client-fragment",
+      "type": "fragment",
+      "url": "https://your-authorized-target.example/test-area/view"
+    },
+    {
+      "id": "preview-form",
+      "type": "form",
+      "url": "https://your-authorized-target.example/test-area/preview",
+      "param": "message",
+      "data": { "message": "baseline" }
+    },
+    {
+      "id": "preview-json",
+      "type": "json",
+      "url": "https://your-authorized-target.example/test-area/api/preview",
+      "param": "message",
+      "data": { "message": "baseline" }
+    },
+    {
+      "id": "browser-feedback-form",
+      "type": "browser-form",
+      "url": "https://your-authorized-target.example/test-area/feedback",
+      "field": "textarea[name=message]",
+      "submit": "button[type=submit]",
+      "fields": { "input[name=subject]": "Authorized XSS test" },
+      "verifyUrls": ["https://your-authorized-target.example/test-area/feedback/preview"]
+    }
+  ]
+}
